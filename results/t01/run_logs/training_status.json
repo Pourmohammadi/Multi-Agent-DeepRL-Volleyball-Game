@@ -1,0 +1,65 @@
+{
+    "VolleyballPlayer": {
+        "checkpoints": [
+            {
+                "steps": 4499951,
+                "file_path": "results\\t01\\VolleyballPlayer\\VolleyballPlayer-4499951.onnx",
+                "reward": 0.6467123145926489,
+                "creation_time": 1692467441.9643197,
+                "auxillary_file_paths": [
+                    "results\\t01\\VolleyballPlayer\\VolleyballPlayer-4499951.pt"
+                ]
+            },
+            {
+                "steps": 4999994,
+                "file_path": "results\\t01\\VolleyballPlayer\\VolleyballPlayer-4999994.onnx",
+                "reward": 1.1272727359424939,
+                "creation_time": 1692467854.279374,
+                "auxillary_file_paths": [
+                    "results\\t01\\VolleyballPlayer\\VolleyballPlayer-4999994.pt"
+                ]
+            },
+            {
+                "steps": 5499992,
+                "file_path": "results\\t01\\VolleyballPlayer\\VolleyballPlayer-5499992.onnx",
+                "reward": 0.6089211471100566,
+                "creation_time": 1692468262.9392726,
+                "auxillary_file_paths": [
+                    "results\\t01\\VolleyballPlayer\\VolleyballPlayer-5499992.pt"
+                ]
+            },
+            {
+                "steps": 5999996,
+                "file_path": "results\\t01\\VolleyballPlayer\\VolleyballPlayer-5999996.onnx",
+                "reward": 0.6958823403891395,
+                "creation_time": 1692468670.2712493,
+                "auxillary_file_paths": [
+                    "results\\t01\\VolleyballPlayer\\VolleyballPlayer-5999996.pt"
+                ]
+            },
+            {
+                "steps": 6034745,
+                "file_path": "results\\t01\\VolleyballPlayer\\VolleyballPlayer-6034745.onnx",
+                "reward": 0.7568093258815053,
+                "creation_time": 1692468698.918131,
+                "auxillary_file_paths": [
+                    "results\\t01\\VolleyballPlayer\\VolleyballPlayer-6034745.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 6034745,
+            "file_path": "results\\t01\\VolleyballPlayer.onnx",
+            "reward": 0.7568093258815053,
+            "creation_time": 1692468698.918131,
+            "auxillary_file_paths": [
+                "results\\t01\\VolleyballPlayer\\VolleyballPlayer-6034745.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "2.0.1+cu118"
+    }
+}
