@@ -3,3 +3,4 @@ Temp/
 Logs/
 .vs/
 *.log
+Assets/ML-Agents/Timers/SampleScene_timers.json
