@@ -6,7 +6,8 @@ using UnityEngine;
 public class BallController : MonoBehaviour
 {
     public Rigidbody ballRb;
-    public Player player;
+    public GameController gameController;
+
     public void SetTrajectory(float initialSpeed, float curveStrength, float angle)
     {
         Vector3 initialVelocity = Quaternion.Euler(0, angle, 0) * Vector3.forward * initialSpeed;
@@ -57,26 +58,22 @@ public class BallController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("BlueTeamField"))
         {
-            player.AddReward(-1.0f);
-            player.EndEpisode();
+            gameController.FieldTouched(false);
             //Debug.Log("Blue team's zone touched by the ball.");
         }
         else if (collision.gameObject.CompareTag("RedTeamField"))
         {
-            player.AddReward(2.0f);
-            player.EndEpisode();
+            gameController.FieldTouched(true);
             //Debug.Log("Red team's zone touched by the ball.");
         }
         else if (collision.gameObject.CompareTag("OuterField"))
         {
-            player.AddReward(-1.0f);
-            player.EndEpisode();
+            gameController.FieldTouched(false);
             //Debug.Log("Outer field touched by the ball.");
         }
         else if (collision.gameObject.CompareTag("Wall"))
         {
-            player.AddReward(-1.0f);
-            player.EndEpisode();
+            gameController.FieldTouched(false);
             //Debug.Log("Wall touched by the ball.");
         }
     }

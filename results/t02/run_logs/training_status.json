@@ -1,0 +1,65 @@
+{
+    "SingleTwoPlayerTeam": {
+        "checkpoints": [
+            {
+                "steps": 499996,
+                "file_path": "results\\t02\\SingleTwoPlayerTeam\\SingleTwoPlayerTeam-499996.onnx",
+                "reward": 0.0,
+                "creation_time": 1692719587.1446095,
+                "auxillary_file_paths": [
+                    "results\\t02\\SingleTwoPlayerTeam\\SingleTwoPlayerTeam-499996.pt"
+                ]
+            },
+            {
+                "steps": 999975,
+                "file_path": "results\\t02\\SingleTwoPlayerTeam\\SingleTwoPlayerTeam-999975.onnx",
+                "reward": 0.0,
+                "creation_time": 1692720012.0607772,
+                "auxillary_file_paths": [
+                    "results\\t02\\SingleTwoPlayerTeam\\SingleTwoPlayerTeam-999975.pt"
+                ]
+            },
+            {
+                "steps": 1499992,
+                "file_path": "results\\t02\\SingleTwoPlayerTeam\\SingleTwoPlayerTeam-1499992.onnx",
+                "reward": 0.0,
+                "creation_time": 1692720415.5569162,
+                "auxillary_file_paths": [
+                    "results\\t02\\SingleTwoPlayerTeam\\SingleTwoPlayerTeam-1499992.pt"
+                ]
+            },
+            {
+                "steps": 1999996,
+                "file_path": "results\\t02\\SingleTwoPlayerTeam\\SingleTwoPlayerTeam-1999996.onnx",
+                "reward": 0.0,
+                "creation_time": 1692720805.1595805,
+                "auxillary_file_paths": [
+                    "results\\t02\\SingleTwoPlayerTeam\\SingleTwoPlayerTeam-1999996.pt"
+                ]
+            },
+            {
+                "steps": 2009332,
+                "file_path": "results\\t02\\SingleTwoPlayerTeam\\SingleTwoPlayerTeam-2009332.onnx",
+                "reward": null,
+                "creation_time": 1692720815.3051956,
+                "auxillary_file_paths": [
+                    "results\\t02\\SingleTwoPlayerTeam\\SingleTwoPlayerTeam-2009332.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 2009332,
+            "file_path": "results\\t02\\SingleTwoPlayerTeam.onnx",
+            "reward": null,
+            "creation_time": 1692720815.3051956,
+            "auxillary_file_paths": [
+                "results\\t02\\SingleTwoPlayerTeam\\SingleTwoPlayerTeam-2009332.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "2.0.1+cu118"
+    }
+}

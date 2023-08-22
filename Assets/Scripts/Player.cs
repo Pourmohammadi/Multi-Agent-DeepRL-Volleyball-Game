@@ -7,23 +7,36 @@ using Unity.MLAgents.Policies;
 using Unity.MLAgents.Sensors;
 using TMPro;
 
+public enum Team
+{
+    Blue = 0,
+    Red = 1
+}
 public class Player : Agent
 {
     Rigidbody rBody;
     public Transform ball;
-    public GameObject ballGameobject;  
+    public GameObject ballGameobject;
     private BallController ballController;  
-    public SphereCollider hitAreaCollider; 
-    float moveSpeed = 13f; 
+    public SphereCollider hitAreaCollider;
+    BehaviorParameters behaviorParameters;
+    GameController gameController;
+    float moveSpeed = 13f;
+    public Team team;
+    public int playerNumber;
 
-    
     void Start()
     {
         rBody = GetComponent<Rigidbody>();
         hitAreaCollider = GetComponent<SphereCollider>();
         ballController = ballGameobject.GetComponent<BallController>();
+        behaviorParameters = gameObject.GetComponent<BehaviorParameters>();
+        gameController = GetComponentInParent<GameController>();
+        if (behaviorParameters.TeamId == (int)Team.Blue)
+        {
+            team = Team.Blue;
+        }
     }
-
     public override void OnEpisodeBegin()
     {
 
@@ -34,11 +47,11 @@ public class Player : Agent
         //    this.rBody.velocity = Vector3.zero;
         //    this.transform.localPosition = new Vector3(-3, 0.5f, 5);
         //}
-        this.transform.localPosition = new Vector3(0, 0.1f, -4);
-        ballController.ballRb.velocity = Vector3.zero;
-        ballController.ballRb.angularVelocity = Vector3.zero;
+        //this.transform.localPosition = new Vector3(0, 0.1f, -4);
+        //ballController.ballRb.velocity = Vector3.zero;
+        //ballController.ballRb.angularVelocity = Vector3.zero;
         //ball.localPosition = new Vector3(Random.value * 8 - 4, 20f, Random.value * 8 - 4);
-        ball.localPosition = new Vector3(Random.value * 9 - 4.5f, 30f, -Random.value * 9);
+        //ball.localPosition = new Vector3(Random.value * 9 - 4.5f, 30f, -Random.value * 9);
         //ball.localPosition = new Vector3(0, 20f, -4);
     }
 
@@ -114,6 +127,16 @@ public class Player : Agent
         PlayerPosition[1] = this.transform.localPosition.z;
         sensor.AddObservation(landingPosition);
         sensor.AddObservation(PlayerPosition);
+        foreach (var i in gameController.playersList)
+        {
+            if (i.player.playerNumber != this.playerNumber)
+            {
+                float[] PlayerPos = new float[2];
+                PlayerPos[0] = i.player.transform.localPosition.x;
+                PlayerPos[1] = i.player.transform.localPosition.z;
+                sensor.AddObservation(PlayerPos);
+            }
+        }
     }
 
     public override void OnActionReceived(ActionBuffers actionBuffers)
@@ -156,7 +179,7 @@ public class Player : Agent
 
         if (IsBallInHitArea())
         {
-            AddReward(0.3f);
+            gameController.blueGroup.AddGroupReward(1);
             float initialSpeed = 3;
             float curveStrength = 6;
             float angel = (direction - 6) * 15;
