@@ -21,7 +21,7 @@ public class Player : Agent
     public SphereCollider hitAreaCollider;
     BehaviorParameters behaviorParameters;
     GameController gameController;
-    float moveSpeed = 13f;
+    float moveSpeed = 10f;
     public Team team;
     public int playerNumber;
 
@@ -35,6 +35,10 @@ public class Player : Agent
         if (behaviorParameters.TeamId == (int)Team.Blue)
         {
             team = Team.Blue;
+        }
+        else
+        {
+            team = Team.Red;
         }
     }
     public override void OnEpisodeBegin()
@@ -119,7 +123,7 @@ public class Player : Agent
 
     public override void CollectObservations(VectorSensor sensor)
     {
-        float[] landingPosition = new float[2];
+        float[] landingPosition = new float[3];
         landingPosition[0] = ball.localPosition.x;
         landingPosition[1] = ball.localPosition.z;
         float[] PlayerPosition = new float[2];
@@ -127,9 +131,39 @@ public class Player : Agent
         PlayerPosition[1] = this.transform.localPosition.z;
         sensor.AddObservation(landingPosition);
         sensor.AddObservation(PlayerPosition);
-        foreach (var i in gameController.playersList)
+        if (this.team == Team.Blue)
         {
-            if (i.player.playerNumber != this.playerNumber)
+            foreach (var i in gameController.bluePlayersList)
+            {
+                if (i.player.playerNumber != this.playerNumber)
+                {
+                    float[] PlayerPos = new float[2];
+                    PlayerPos[0] = i.player.transform.localPosition.x;
+                    PlayerPos[1] = i.player.transform.localPosition.z;
+                    sensor.AddObservation(PlayerPos);
+                }
+            }
+            foreach (var i in gameController.redPlayersList)
+            {
+                float[] PlayerPos = new float[2];
+                PlayerPos[0] = i.player.transform.localPosition.x;
+                PlayerPos[1] = i.player.transform.localPosition.z;
+                sensor.AddObservation(PlayerPos);
+            }
+        }
+        else
+        {
+            foreach (var i in gameController.redPlayersList)
+            {
+                if (i.player.playerNumber != this.playerNumber)
+                {
+                    float[] PlayerPos = new float[2];
+                    PlayerPos[0] = i.player.transform.localPosition.x;
+                    PlayerPos[1] = i.player.transform.localPosition.z;
+                    sensor.AddObservation(PlayerPos);
+                }
+            }
+            foreach (var i in gameController.bluePlayersList)
             {
                 float[] PlayerPos = new float[2];
                 PlayerPos[0] = i.player.transform.localPosition.x;
@@ -142,10 +176,10 @@ public class Player : Agent
     public override void OnActionReceived(ActionBuffers actionBuffers)
     {
         int movement = actionBuffers.DiscreteActions[0];
-        int jump = actionBuffers.DiscreteActions[1];
-        int deffence = actionBuffers.DiscreteActions[2];
-        int direction = actionBuffers.DiscreteActions[3];
-        int set = actionBuffers.DiscreteActions[4];
+        //int jump = actionBuffers.DiscreteActions[1];
+        //int deffence = actionBuffers.DiscreteActions[2];
+        int direction = actionBuffers.DiscreteActions[1];
+        int strike = actionBuffers.DiscreteActions[2];
 
         Vector3 movementVector = Vector3.zero;
 
@@ -179,12 +213,11 @@ public class Player : Agent
 
         if (IsBallInHitArea())
         {
-            gameController.blueGroup.AddGroupReward(1);
+            //gameController.blueGroup.AddGroupReward(1);
             float initialSpeed = 3;
             float curveStrength = 6;
-            float angel = (direction - 6) * 15;
-            int curveStrengthIndex = set / 4;
-            int initialSpeedIndex = set % 4;
+            int curveStrengthIndex = strike / 4;
+            int initialSpeedIndex = strike % 4;
 
             if (curveStrengthIndex == 0)
             {
@@ -201,11 +234,11 @@ public class Player : Agent
 
             if (initialSpeedIndex == 0)
             {
-                initialSpeed = 0f;
+                initialSpeed = 2f;
             }
             else if (initialSpeedIndex == 1)
             {
-                initialSpeed = 3f;
+                initialSpeed = 4f;
             }
             else if (initialSpeedIndex == 2)
             {
@@ -216,34 +249,27 @@ public class Player : Agent
                 initialSpeed = 10f;
             }
 
+            float angel = (direction - 6) * 15;
+            if (this.team == Team.Red)
+            {
+                angel = angel - 180;
+            }
+
+            if (this.team == Team.Blue)
+            {
+                gameController.lastHit = 0;
+            }
+            else
+            {
+                gameController.lastHit = 1;
+            }
+
             ballController.SetTrajectory(initialSpeed, curveStrength, angel);
         }
 
         //if (IsBallInHitArea())
         //{
-        //    ballController.SetTrajectory(10f, 8f, 90f);
-        //}
-
-        //float distanceToTarget = Vector3.Distance(this.transform.localPosition, ball.localPosition);
-        //if (distanceToTarget < 0.7f)
-        //{
-        //    EndEpisode();
-        //}
-        //if (ball.localPosition.y < 0.5f)
-        //{
-        //    EndEpisode();
-        //}
-        //if (this.transform.localPosition.x < -9.5 || this.transform.localPosition.x > 9.5 
-        //    || this.transform.localPosition.z < -15.5 || this.transform.localPosition.z > 15.5)
-        //{
-        //    SetReward(-1.0f);
-        //    EndEpisode();
-        //}
-        //if (this.transform.localPosition.x < 0 || this.transform.localPosition.x > 5
-        //    || this.transform.localPosition.z < -9 || this.transform.localPosition.z > 0)
-        //{
-        //    SetReward(-0.1f);
-        //    EndEpisode();
+        //    ballController.SetTrajectory(5f, 5f, 90f);
         //}
     }
 

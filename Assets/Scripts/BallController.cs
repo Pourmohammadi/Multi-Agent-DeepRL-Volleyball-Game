@@ -58,22 +58,36 @@ public class BallController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("BlueTeamField"))
         {
-            gameController.FieldTouched(false);
+            gameController.gotPoint(false);
             //Debug.Log("Blue team's zone touched by the ball.");
         }
         else if (collision.gameObject.CompareTag("RedTeamField"))
         {
-            gameController.FieldTouched(true);
+            gameController.gotPoint(true);
             //Debug.Log("Red team's zone touched by the ball.");
         }
         else if (collision.gameObject.CompareTag("OuterField"))
         {
-            gameController.FieldTouched(false);
+            if (gameController.lastHit == 0)
+            {
+                gameController.gotPoint(false);
+            }
+            else
+            {
+                gameController.gotPoint(true);
+            }
             //Debug.Log("Outer field touched by the ball.");
         }
         else if (collision.gameObject.CompareTag("Wall"))
         {
-            gameController.FieldTouched(false);
+            if (gameController.lastHit == 0)
+            {
+                gameController.gotPoint(false);
+            }
+            else
+            {
+                gameController.gotPoint(true);
+            }
             //Debug.Log("Wall touched by the ball.");
         }
     }
