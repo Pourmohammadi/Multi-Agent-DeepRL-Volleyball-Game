@@ -13,7 +13,7 @@ public class BallController : MonoBehaviour
         Vector3 initialVelocity = Quaternion.Euler(0, angle, 0) * Vector3.forward * initialSpeed;
         Vector3 upwardForce = Vector3.up * curveStrength;
         Vector3 totalVelocity = initialVelocity + upwardForce;
-        ballRb.velocity = totalVelocity;;
+        ballRb.velocity = totalVelocity; 
     }
 
     public Vector3 CalculateFinalDestination(Vector3 initialPosition, Vector3 initialVelocity)

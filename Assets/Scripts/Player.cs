@@ -32,14 +32,14 @@ public class Player : Agent
         ballController = ballGameobject.GetComponent<BallController>();
         behaviorParameters = gameObject.GetComponent<BehaviorParameters>();
         gameController = GetComponentInParent<GameController>();
-        if (behaviorParameters.TeamId == (int)Team.Blue)
-        {
-            team = Team.Blue;
-        }
-        else
-        {
-            team = Team.Red;
-        }
+        //if (behaviorParameters.TeamId == (int)Team.Blue)
+        //{
+        //    team = Team.Blue;
+        //}
+        //else
+        //{
+        //    team = Team.Red;
+        //}
     }
     public override void OnEpisodeBegin()
     {
@@ -123,13 +123,15 @@ public class Player : Agent
 
     public override void CollectObservations(VectorSensor sensor)
     {
-        float[] landingPosition = new float[3];
-        landingPosition[0] = ball.localPosition.x;
-        landingPosition[1] = ball.localPosition.z;
+        //float[] landingPosition = new float[3];
+        //landingPosition[0] = ball.localPosition.x;
+        //landingPosition[1] = ball.localPosition.z;
+        sensor.AddObservation(ball.localPosition);
+        sensor.AddObservation(ballController.ballRb.velocity);
         float[] PlayerPosition = new float[2];
         PlayerPosition[0] = this.transform.localPosition.x;
         PlayerPosition[1] = this.transform.localPosition.z;
-        sensor.AddObservation(landingPosition);
+        //sensor.AddObservation(landingPosition);
         sensor.AddObservation(PlayerPosition);
         if (this.team == Team.Blue)
         {
