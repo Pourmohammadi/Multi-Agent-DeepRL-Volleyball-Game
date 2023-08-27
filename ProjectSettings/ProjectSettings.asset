@@ -670,8 +670,8 @@ PlayerSettings:
   apiCompatibilityLevelPerPlatform: {}
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: ml_agent_volleyball_test_01
-  metroPackageVersion: 
+  metroPackageName: mlagentvolleyballtest01
+  metroPackageVersion: 1.0.0.0
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
@@ -679,7 +679,7 @@ PlayerSettings:
   metroCertificateNotAfter: 0000000000000000
   metroApplicationDescription: ml_agent_volleyball_test_01
   wsaImages: {}
-  metroTileShortName: 
+  metroTileShortName: ml_agent_volleyball_test_01
   metroTileShowName: 0
   metroMediumTileShowName: 0
   metroLargeTileShowName: 0

@@ -6,6 +6,7 @@ using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Policies;
 using Unity.MLAgents.Sensors;
 using TMPro;
+using System;
 
 public enum Team
 {
@@ -32,14 +33,6 @@ public class Player : Agent
         ballController = ballGameobject.GetComponent<BallController>();
         behaviorParameters = gameObject.GetComponent<BehaviorParameters>();
         gameController = GetComponentInParent<GameController>();
-        //if (behaviorParameters.TeamId == (int)Team.Blue)
-        //{
-        //    team = Team.Blue;
-        //}
-        //else
-        //{
-        //    team = Team.Red;
-        //}
     }
     public override void OnEpisodeBegin()
     {
@@ -112,7 +105,7 @@ public class Player : Agent
         //    }
         //    if (Input.GetKey(KeyCode.Space))
         //    {
-        //        movementVector.y = 1;
+        //        movementVector.y = 0.7f;
         //    }
 
         //    Vector3 velocity = movementVector * moveSpeed;
@@ -126,6 +119,28 @@ public class Player : Agent
         //float[] landingPosition = new float[3];
         //landingPosition[0] = ball.localPosition.x;
         //landingPosition[1] = ball.localPosition.z;
+        if (this.team == Team.Blue)
+        {
+            if (gameController.blueTeamLastkicker != this.playerNumber)
+            {
+                sensor.AddObservation(1);
+            }
+            else
+            {
+                sensor.AddObservation(0);
+            }
+        }
+        else if (this.team == Team.Red)
+        {
+            if (gameController.redTeamLastkicker != this.playerNumber)
+            {
+                sensor.AddObservation(1);
+            }
+            else
+            {
+                sensor.AddObservation(0);
+            }
+        }
         sensor.AddObservation(ball.localPosition);
         sensor.AddObservation(ballController.ballRb.velocity);
         float[] PlayerPosition = new float[2];
@@ -178,8 +193,6 @@ public class Player : Agent
     public override void OnActionReceived(ActionBuffers actionBuffers)
     {
         int movement = actionBuffers.DiscreteActions[0];
-        //int jump = actionBuffers.DiscreteActions[1];
-        //int deffence = actionBuffers.DiscreteActions[2];
         int direction = actionBuffers.DiscreteActions[1];
         int strike = actionBuffers.DiscreteActions[2];
 
@@ -203,11 +216,10 @@ public class Player : Agent
             {
                 movementVector.z = -1f;
             }
-
-            //if (jump == 1)
-            //{
-            //    movementVector.y = 1f;
-            //}
+            else if (movement == 5)
+            {
+                movementVector.y = 0.5f;
+            }
 
             Vector3 velocity = movementVector * moveSpeed;
             rBody.velocity = velocity;
@@ -215,64 +227,144 @@ public class Player : Agent
 
         if (IsBallInHitArea())
         {
-            //gameController.blueGroup.AddGroupReward(1);
-            float initialSpeed = 3;
-            float curveStrength = 6;
-            int curveStrengthIndex = strike / 4;
-            int initialSpeedIndex = strike % 4;
+            if ((this.team == Team.Blue) && (gameController.blueTeamLastkicker != this.playerNumber))
+            {
+                gameController.redTeamLastkicker = -1;
+                gameController.redTeamHits = 0;
 
-            if (curveStrengthIndex == 0)
-            {
-                curveStrength = 6f;
+                if (gameController.blueTeamHits == 0)
+                {
+                    HitTheBall(strike, direction, false);
+                    gameController.blueTeamLastkicker = this.playerNumber;
+                    gameController.blueTeamHits = 1;
+                }
+                else if (gameController.blueTeamHits == 1)
+                {
+                    HitTheBall(strike, direction, true);
+                    gameController.blueTeamLastkicker = this.playerNumber;
+                    gameController.blueTeamHits = 2;
+                }
             }
-            else if (curveStrengthIndex == 1)
+            else if ((this.team == Team.Red) && (gameController.redTeamLastkicker != this.playerNumber))
             {
-                curveStrength = 8f;
-            }
-            //else if (curveStrengthIndex == 2)
-            //{
-            //    curveStrength = 10f;
-            //}
+                gameController.blueTeamLastkicker = -1;
+                gameController.blueTeamHits = 0;
 
-            if (initialSpeedIndex == 0)
-            {
-                initialSpeed = 2f;
+                if (gameController.redTeamHits == 0)
+                {
+                    HitTheBall(strike, direction, false);
+                    gameController.redTeamLastkicker = this.playerNumber;
+                    gameController.redTeamHits = 1;
+                }
+                else if (gameController.redTeamHits == 1)
+                {
+                    HitTheBall(strike, direction, true);
+                    gameController.redTeamLastkicker = this.playerNumber;
+                    gameController.redTeamHits = 2;
+                }
             }
-            else if (initialSpeedIndex == 1)
-            {
-                initialSpeed = 4f;
-            }
-            else if (initialSpeedIndex == 2)
-            {
-                initialSpeed = 6f;
-            }
-            else if (initialSpeedIndex == 3)
-            {
-                initialSpeed = 10f;
-            }
-
-            float angel = (direction - 6) * 15;
-            if (this.team == Team.Red)
-            {
-                angel = angel - 180;
-            }
-
-            if (this.team == Team.Blue)
-            {
-                gameController.lastHit = 0;
-            }
-            else
-            {
-                gameController.lastHit = 1;
-            }
-
-            ballController.SetTrajectory(initialSpeed, curveStrength, angel);
         }
 
         //if (IsBallInHitArea())
         //{
-        //    ballController.SetTrajectory(5f, 5f, 90f);
+        //    if ((this.team == Team.Blue) && (gameController.blueTeamLastkicker != this.playerNumber))
+        //    {
+        //        print(1);
+        //        ballController.SetTrajectory(2.5f, 8f, 0f);
+        //        gameController.blueTeamLastkicker = this.playerNumber;
+        //    }
         //}
+    }
+
+    void HitTheBall(int Strike, int Direction, bool isSet)
+    {
+        float initialSpeed = 3;
+        float curveStrength = 6;
+        int curveStrengthIndex = Strike / 4;
+        int initialSpeedIndex = Strike % 4;
+
+        if (isSet)
+        {
+            if (curveStrengthIndex == 0)
+            {
+                curveStrength = 1f;
+            }
+            else if (curveStrengthIndex == 1)
+            {
+                curveStrength = 4f;
+            }
+            else if (curveStrengthIndex == 2)
+            {
+                curveStrength = 6f;
+            }
+
+            if (initialSpeedIndex == 0)
+            {
+                initialSpeed = 5f;
+            }
+            else if (initialSpeedIndex == 1)
+            {
+                initialSpeed = 7f;
+            }
+            else if (initialSpeedIndex == 2)
+            {
+                initialSpeed = 9f;
+            }
+            else if (initialSpeedIndex == 3)
+            {
+                initialSpeed = 11f;
+            }
+        }
+        else
+        {
+            if (curveStrengthIndex == 0)
+            {
+                curveStrength = 4f;
+            }
+            else if (curveStrengthIndex == 1)
+            {
+                curveStrength = 6f;
+            }
+            else if (curveStrengthIndex == 2)
+            {
+                curveStrength = 8f;
+            }
+
+            if (initialSpeedIndex == 0)
+            {
+                initialSpeed = 1f;
+            }
+            else if (initialSpeedIndex == 1)
+            {
+                initialSpeed = 1.5f;
+            }
+            else if (initialSpeedIndex == 2)
+            {
+                initialSpeed = 2f;
+            }
+            else if (initialSpeedIndex == 3)
+            {
+                initialSpeed = 2.5f;
+            }
+        }
+        
+
+        float angel = (Direction - 6) * 15;
+        if (this.team == Team.Red)
+        {
+            angel = angel - 180;
+        }
+
+        if (this.team == Team.Blue)
+        {
+            gameController.lastHit = 0;
+        }
+        else
+        {
+            gameController.lastHit = 1;
+        }
+
+        ballController.SetTrajectory(initialSpeed, curveStrength, angel);
     }
 
     bool IsBallInHitArea()

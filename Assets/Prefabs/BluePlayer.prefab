@@ -1185,19 +1185,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 14
+    VectorObservationSize: 15
     NumStackedVectorObservations: 1
     m_ActionSpec:
       m_NumContinuousActions: 0
-      BranchSizes: 050000000d00000008000000
-    VectorActionSize: 050000000d00000008000000
+      BranchSizes: 060000000d0000000c000000
+    VectorActionSize: 060000000d0000000c000000
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 5022602860645237092, guid: f990fe123dae6c74cb0b8a2470493f0b, type: 3}
+  m_Model: {fileID: 5022602860645237092, guid: 347d2d54f8867264989b81e2b5900b55, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
-  m_BehaviorName: TwoTeamsTwoPlayers
+  m_BehaviorName: TwoTeamsTwoPlayers-v2.1
   TeamId: 0
   m_UseChildSensors: 1
   m_UseChildActuators: 1
@@ -1284,8 +1284,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.63, y: 1.85, z: 0.39}
-  m_Center: {x: 0, y: 0.9, z: 0.03}
+  m_Size: {x: 1.05, y: 1.85, z: 1.05}
+  m_Center: {x: 0, y: 0.9, z: 0.19}
 --- !u!135 &4382961648322376111
 SphereCollider:
   m_ObjectHideFlags: 0

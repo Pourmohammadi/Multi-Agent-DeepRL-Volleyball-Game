@@ -13,6 +13,14 @@ public class GameController : MonoBehaviour
     public int lastHit;
     [HideInInspector]
     public bool blueTeamTurn;
+    [HideInInspector]
+    public int blueTeamHits;
+    [HideInInspector]
+    public int redTeamHits;
+    [HideInInspector]
+    public int blueTeamLastkicker;
+    [HideInInspector]
+    public int redTeamLastkicker;
 
     [System.Serializable]
     public class PlayerInfo
@@ -92,6 +100,11 @@ public class GameController : MonoBehaviour
     {
         resetTimer = 0;
 
+        blueTeamHits = 0;
+        redTeamHits = 0;
+        blueTeamLastkicker = -1;
+        redTeamLastkicker = -1;
+
         foreach (var i in bluePlayersList)
         {
             i.Rb.velocity = Vector3.zero;
@@ -109,12 +122,14 @@ public class GameController : MonoBehaviour
         ballRb.angularVelocity = Vector3.zero;
         if (blueTeamTurn)
         {
+            //ball.transform.localPosition = new Vector3(2f, 10f, -4.5f);
             ball.transform.localPosition = new Vector3(Random.value * 9 - 4.5f, 30f, -Random.value * 8.5f - 0.5f);
             blueTeamTurn = false;
             lastHit = 0;
         }
         else
         {
+            //ball.transform.localPosition = new Vector3(2f, 10f, 4.5f);
             ball.transform.localPosition = new Vector3(Random.value * 9 - 4.5f, 30f, Random.value * 8.5f + 0.5f);
             blueTeamTurn = true;
             lastHit = 1;
