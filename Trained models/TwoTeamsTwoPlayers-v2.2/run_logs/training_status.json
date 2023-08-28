@@ -1,0 +1,66 @@
+{
+    "TwoTeamsTwoPlayers-v2.2": {
+        "checkpoints": [
+            {
+                "steps": 68499980,
+                "file_path": "results\\t05\\TwoTeamsTwoPlayers-v2.2\\TwoTeamsTwoPlayers-v2.2-68499980.onnx",
+                "reward": 0.08521739296291185,
+                "creation_time": 1693205580.165106,
+                "auxillary_file_paths": [
+                    "results\\t05\\TwoTeamsTwoPlayers-v2.2\\TwoTeamsTwoPlayers-v2.2-68499980.pt"
+                ]
+            },
+            {
+                "steps": 68999992,
+                "file_path": "results\\t05\\TwoTeamsTwoPlayers-v2.2\\TwoTeamsTwoPlayers-v2.2-68999992.onnx",
+                "reward": 0.11601562733994797,
+                "creation_time": 1693205927.691436,
+                "auxillary_file_paths": [
+                    "results\\t05\\TwoTeamsTwoPlayers-v2.2\\TwoTeamsTwoPlayers-v2.2-68999992.pt"
+                ]
+            },
+            {
+                "steps": 69499942,
+                "file_path": "results\\t05\\TwoTeamsTwoPlayers-v2.2\\TwoTeamsTwoPlayers-v2.2-69499942.onnx",
+                "reward": 0.09505376517772675,
+                "creation_time": 1693206359.107997,
+                "auxillary_file_paths": [
+                    "results\\t05\\TwoTeamsTwoPlayers-v2.2\\TwoTeamsTwoPlayers-v2.2-69499942.pt"
+                ]
+            },
+            {
+                "steps": 69999994,
+                "file_path": "results\\t05\\TwoTeamsTwoPlayers-v2.2\\TwoTeamsTwoPlayers-v2.2-69999994.onnx",
+                "reward": 0.0757352954653256,
+                "creation_time": 1693206797.3906355,
+                "auxillary_file_paths": [
+                    "results\\t05\\TwoTeamsTwoPlayers-v2.2\\TwoTeamsTwoPlayers-v2.2-69999994.pt"
+                ]
+            },
+            {
+                "steps": 70004346,
+                "file_path": "results\\t05\\TwoTeamsTwoPlayers-v2.2\\TwoTeamsTwoPlayers-v2.2-70004346.onnx",
+                "reward": 0.07021276710938054,
+                "creation_time": 1693206800.0757644,
+                "auxillary_file_paths": [
+                    "results\\t05\\TwoTeamsTwoPlayers-v2.2\\TwoTeamsTwoPlayers-v2.2-70004346.pt"
+                ]
+            }
+        ],
+        "elo": 2804.626806893778,
+        "final_checkpoint": {
+            "steps": 70004346,
+            "file_path": "results\\t05\\TwoTeamsTwoPlayers-v2.2.onnx",
+            "reward": 0.07021276710938054,
+            "creation_time": 1693206800.0757644,
+            "auxillary_file_paths": [
+                "results\\t05\\TwoTeamsTwoPlayers-v2.2\\TwoTeamsTwoPlayers-v2.2-70004346.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "2.0.1+cu118"
+    }
+}
