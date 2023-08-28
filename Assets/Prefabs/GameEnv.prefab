@@ -135,7 +135,7 @@ Transform:
   m_GameObject: {fileID: 1838934129489097498}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.04, y: 0.96, z: 1.14}
+  m_LocalPosition: {x: 2.648, y: 1.57, z: -1.58}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -453,6 +453,10 @@ MonoBehaviour:
   ballRb: {fileID: 0}
   lastHit: 0
   blueTeamTurn: 0
+  blueTeamHits: 0
+  redTeamHits: 0
+  blueTeamLastkicker: 0
+  redTeamLastkicker: 0
   MaxEnvironmentSteps: 5000
   bluePlayersList:
   - player: {fileID: 3793788383410956111}

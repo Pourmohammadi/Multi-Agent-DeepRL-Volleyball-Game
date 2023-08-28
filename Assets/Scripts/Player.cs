@@ -121,24 +121,50 @@ public class Player : Agent
         //landingPosition[1] = ball.localPosition.z;
         if (this.team == Team.Blue)
         {
-            if (gameController.blueTeamLastkicker != this.playerNumber)
+            if ((gameController.blueTeamLastkicker != this.playerNumber) && (gameController.blueTeamHits < 2))
             {
                 sensor.AddObservation(1);
             }
             else
             {
                 sensor.AddObservation(0);
+            }
+
+            if (gameController.blueTeamHits == 0)
+            {
+                sensor.AddObservation(0);
+            }
+            else if (gameController.blueTeamHits == 1)
+            {
+                sensor.AddObservation(1);
+            }
+            else
+            {
+                sensor.AddObservation(2);
             }
         }
         else if (this.team == Team.Red)
         {
-            if (gameController.redTeamLastkicker != this.playerNumber)
+            if ((gameController.redTeamLastkicker != this.playerNumber) && (gameController.redTeamHits < 2))
             {
                 sensor.AddObservation(1);
             }
             else
             {
                 sensor.AddObservation(0);
+            }
+
+            if (gameController.redTeamHits == 0)
+            {
+                sensor.AddObservation(0);
+            }
+            else if (gameController.redTeamHits == 1)
+            {
+                sensor.AddObservation(1);
+            }
+            else
+            {
+                sensor.AddObservation(2);
             }
         }
         sensor.AddObservation(ball.localPosition);
@@ -227,37 +253,41 @@ public class Player : Agent
 
         if (IsBallInHitArea())
         {
-            if ((this.team == Team.Blue) && (gameController.blueTeamLastkicker != this.playerNumber))
+            if ((this.team == Team.Blue) && (gameController.blueTeamLastkicker != this.playerNumber) && (gameController.blueTeamHits < 2))
             {
                 gameController.redTeamLastkicker = -1;
                 gameController.redTeamHits = 0;
 
                 if (gameController.blueTeamHits == 0)
                 {
+                    AddReward(0.1f);
                     HitTheBall(strike, direction, false);
                     gameController.blueTeamLastkicker = this.playerNumber;
                     gameController.blueTeamHits = 1;
                 }
                 else if (gameController.blueTeamHits == 1)
                 {
+                    AddReward(0.1f);
                     HitTheBall(strike, direction, true);
                     gameController.blueTeamLastkicker = this.playerNumber;
                     gameController.blueTeamHits = 2;
                 }
             }
-            else if ((this.team == Team.Red) && (gameController.redTeamLastkicker != this.playerNumber))
+            else if ((this.team == Team.Red) && (gameController.redTeamLastkicker != this.playerNumber) && (gameController.redTeamHits < 2))
             {
                 gameController.blueTeamLastkicker = -1;
                 gameController.blueTeamHits = 0;
 
                 if (gameController.redTeamHits == 0)
                 {
+                    AddReward(0.1f);
                     HitTheBall(strike, direction, false);
                     gameController.redTeamLastkicker = this.playerNumber;
                     gameController.redTeamHits = 1;
                 }
                 else if (gameController.redTeamHits == 1)
                 {
+                    AddReward(0.1f);
                     HitTheBall(strike, direction, true);
                     gameController.redTeamLastkicker = this.playerNumber;
                     gameController.redTeamHits = 2;

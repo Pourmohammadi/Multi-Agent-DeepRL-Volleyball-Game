@@ -123,14 +123,14 @@ public class GameController : MonoBehaviour
         if (blueTeamTurn)
         {
             //ball.transform.localPosition = new Vector3(2f, 10f, -4.5f);
-            ball.transform.localPosition = new Vector3(Random.value * 9 - 4.5f, 30f, -Random.value * 8.5f - 0.5f);
+            ball.transform.localPosition = new Vector3(Random.value * 8.5f - 4.25f, 30f, -Random.value * 3.5f - 5f);
             blueTeamTurn = false;
             lastHit = 0;
         }
         else
         {
             //ball.transform.localPosition = new Vector3(2f, 10f, 4.5f);
-            ball.transform.localPosition = new Vector3(Random.value * 9 - 4.5f, 30f, Random.value * 8.5f + 0.5f);
+            ball.transform.localPosition = new Vector3(Random.value * 8.5f - 4.25f, 30f, Random.value * 3.5f + 5f);
             blueTeamTurn = true;
             lastHit = 1;
         }
