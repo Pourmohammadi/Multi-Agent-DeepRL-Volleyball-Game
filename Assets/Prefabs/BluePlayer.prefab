@@ -1194,10 +1194,10 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 5022602860645237092, guid: 81c06df6084d43142ac1cfe8666e266c, type: 3}
+  m_Model: {fileID: 0}
   m_InferenceDevice: 0
   m_BehaviorType: 0
-  m_BehaviorName: TwoTeamsTwoPlayers-v2.2
+  m_BehaviorName: TwoTeamsTwoPlayers-v2.4
   TeamId: 0
   m_UseChildSensors: 1
   m_UseChildActuators: 1
@@ -1278,7 +1278,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
