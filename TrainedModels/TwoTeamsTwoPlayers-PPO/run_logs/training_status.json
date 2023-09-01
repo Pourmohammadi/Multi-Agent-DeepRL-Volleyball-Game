@@ -1,0 +1,93 @@
+{
+    "TwoTeamsTwoPlayers-PPO": {
+        "checkpoints": [
+            {
+                "steps": 9999996,
+                "file_path": "results\\t08\\TwoTeamsTwoPlayers-PPO\\TwoTeamsTwoPlayers-PPO-9999996.onnx",
+                "reward": 0.009043927783343834,
+                "creation_time": 1693477843.2295845,
+                "auxillary_file_paths": [
+                    "results\\t08\\TwoTeamsTwoPlayers-PPO\\TwoTeamsTwoPlayers-PPO-9999996.pt"
+                ]
+            },
+            {
+                "steps": 19999990,
+                "file_path": "results\\t08\\TwoTeamsTwoPlayers-PPO\\TwoTeamsTwoPlayers-PPO-19999990.onnx",
+                "reward": 0.014405594620254489,
+                "creation_time": 1693484281.6607566,
+                "auxillary_file_paths": [
+                    "results\\t08\\TwoTeamsTwoPlayers-PPO\\TwoTeamsTwoPlayers-PPO-19999990.pt"
+                ]
+            },
+            {
+                "steps": 29999981,
+                "file_path": "results\\t08\\TwoTeamsTwoPlayers-PPO\\TwoTeamsTwoPlayers-PPO-29999981.onnx",
+                "reward": 0.020734908445457147,
+                "creation_time": 1693490765.0964205,
+                "auxillary_file_paths": [
+                    "results\\t08\\TwoTeamsTwoPlayers-PPO\\TwoTeamsTwoPlayers-PPO-29999981.pt"
+                ]
+            },
+            {
+                "steps": 39999990,
+                "file_path": "results\\t08\\TwoTeamsTwoPlayers-PPO\\TwoTeamsTwoPlayers-PPO-39999990.onnx",
+                "reward": 0.02403651151435854,
+                "creation_time": 1693496923.982692,
+                "auxillary_file_paths": [
+                    "results\\t08\\TwoTeamsTwoPlayers-PPO\\TwoTeamsTwoPlayers-PPO-39999990.pt"
+                ]
+            },
+            {
+                "steps": 49999982,
+                "file_path": "results\\t08\\TwoTeamsTwoPlayers-PPO\\TwoTeamsTwoPlayers-PPO-49999982.onnx",
+                "reward": 0.03395522438656928,
+                "creation_time": 1693502933.0522287,
+                "auxillary_file_paths": [
+                    "results\\t08\\TwoTeamsTwoPlayers-PPO\\TwoTeamsTwoPlayers-PPO-49999982.pt"
+                ]
+            },
+            {
+                "steps": 59999972,
+                "file_path": "results\\t08\\TwoTeamsTwoPlayers-PPO\\TwoTeamsTwoPlayers-PPO-59999972.onnx",
+                "reward": 0.035658915260041404,
+                "creation_time": 1693508945.3713183,
+                "auxillary_file_paths": [
+                    "results\\t08\\TwoTeamsTwoPlayers-PPO\\TwoTeamsTwoPlayers-PPO-59999972.pt"
+                ]
+            },
+            {
+                "steps": 69999976,
+                "file_path": "results\\t08\\TwoTeamsTwoPlayers-PPO\\TwoTeamsTwoPlayers-PPO-69999976.onnx",
+                "reward": 0.045396146286733656,
+                "creation_time": 1693514839.8348029,
+                "auxillary_file_paths": [
+                    "results\\t08\\TwoTeamsTwoPlayers-PPO\\TwoTeamsTwoPlayers-PPO-69999976.pt"
+                ]
+            },
+            {
+                "steps": 70193658,
+                "file_path": "results\\t08\\TwoTeamsTwoPlayers-PPO\\TwoTeamsTwoPlayers-PPO-70193658.onnx",
+                "reward": 0.03947368479873005,
+                "creation_time": 1693514953.2998493,
+                "auxillary_file_paths": [
+                    "results\\t08\\TwoTeamsTwoPlayers-PPO\\TwoTeamsTwoPlayers-PPO-70193658.pt"
+                ]
+            }
+        ],
+        "elo": 2751.1294058706867,
+        "final_checkpoint": {
+            "steps": 70193658,
+            "file_path": "results\\t08\\TwoTeamsTwoPlayers-PPO.onnx",
+            "reward": 0.03947368479873005,
+            "creation_time": 1693514953.2998493,
+            "auxillary_file_paths": [
+                "results\\t08\\TwoTeamsTwoPlayers-PPO\\TwoTeamsTwoPlayers-PPO-70193658.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "2.0.1+cu118"
+    }
+}
